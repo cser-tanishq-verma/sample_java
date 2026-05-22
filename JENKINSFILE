@@ -1,0 +1,26 @@
+pipeline {
+    agent any
+
+    tools {
+        jdk 'JDK21'
+    }
+
+    stages {
+
+        stage('clone') {
+            steps {
+                git 'https://github.com/cser-tanishq-verma/sample_java.git'
+            }
+        }
+
+        stage('Compile & Run') {
+            steps {
+                bat '''
+                java -version
+                javac Test.java
+                java Test
+                '''
+            }
+        }
+    }
+}
